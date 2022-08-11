@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="resources/js/getbill.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script>
+        function loadhomepage(){
+         window.location.replace("User");
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <img src="resources/images/success.gif" width="400px"  height="250px">
+        <h3>Thank you !</h3>
+        <h2>Your order is Succesfully Done.</h2>
+    </div>
+    <div style="text-align: center;margin-top: 50px;">
+        <button class="btn btn-success" onclick="loadhomepage()"><i class="fa fa-home" aria-hidden="true"></i> Back to Home</button>
+    </div>
+    <div style="text-align: center;border-style: outset;margin-left: 500px;margin-right: 500px;margin-top: 50px;">
+        <h3>Bill Paid</h3>
+        <hr>
+        <p id="billname">Name:</p>
+        <p id="billprice">Amount Paid:</p>
+        <p id="billdate">Date:</p>
+        <p id="billtime">Time:</p>
+    </div>
+
+
+ 
+</body>
+</html>
+
+
+

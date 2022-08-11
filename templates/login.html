@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="resources/css/login.css">
+    <title>login</title>
+</head>
+<!-- <body style="background-image: url('resources/images/w.jpg'); background-repeat: no-repeat;background-size: cover; "> -->
+  <body>
+    <div class="background">
+        <div class="form-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+                        <div class="form-container">
+                            <h3 class="title">Login</h3>
+                            <form class="form-horizontal" name="login" id="login">
+                                <div class="form-icon">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <span class="input-icon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder="Mobile Number" id="mobilenumber" name="mobilenumber" required >
+                                </div>
+                                
+                                <div class="form-group">
+                                    <span class="input-icon"><i class="fa fa-lock"></i></span>
+                                    <input type="password" class="form-control" placeholder="Password" id="password" name="password" required><br>
+                                    
+                                   <div style="margin-left:70%;">
+                                        <label class="checkbox-inline"><input type="checkbox" name="check"  id="check">Login As Admin</label>
+                                    </div>
+                                </div>
+                                <p id="error" style="color:red ;"></p>
+                                <button  type="submit" class="btn signin" >Login</button>
+                            
+                            </form>
+                            <a href="Signup" id="signup" >Create an account? Signup</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    
+    </div>
+
+
+
+    <script src="resources/js/login.js"></script>
+</body>
+</html>

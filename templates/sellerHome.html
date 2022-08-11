@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>sellerHome</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="resources/js/checkUser.js"></script>
+  <script src="resources/js/getProduct.js"></script>
+  <script src="resources/js/getProfile.js"></script>
+  <script src="resources/js/getCategory.js"></script>
+  <script src="resources/js/editCategory.js"></script>
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="resources/css/sellerHome.css">
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" style="padding: 10px;background-color: #5DADE2 ; ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="font-family:Lucida Handwriting;color: #F4F6F7;" >Fashioner</a>
+    </div>
+    <ul class="nav navbar-nav" style="margin-left: 90px;">
+      <!-- <li class="active"><a href="#" style=" font-family: Lucida Console;font-size: large;">Home</a></li> -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#productModal" style="font-family: Lucida Console;"><i class="fa fa-plus"></i> Add product</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#categoryModal" style="font-family: Lucida Console;"><i class="fa fa-plus"></i> Add Category</button>
+   
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"  style="font-family: Lucida Console;color: #F4F6F7;" onclick="vieworders()"><i class="fa fa-opencart" aria-hidden="true"></i>  View orders</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#editcategoryModal" style="font-family: Lucida Console;color: aliceblue;" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  My categories</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"  style="font-family:Lucida Console;color: #F4F6F7 ;background-color: #5DADE2; "><span class="fa fa-user-circle-o" ></span>  Profile
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" data-toggle="modal" data-target="#profileModal" style="font-family: Lucida Console;" ><span class="fa fa-user"></span> My Profile</a></li>
+        
+          <li><a href="#" data-toggle="modal" data-target="#passwordModal" style="font-family: Lucida Console;" ><i class="fa fa-unlock-alt" aria-hidden="true"></i>  Change password</a></li>
+ 
+          <hr><li><a href="#" style="font-family: Lucida Console;" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    
+        </ul>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+<!-- product card  -->
+ 
+<div class="container-fluid" style="margin-left: 180px;"> 
+  <div class="cont" id="productcard" style="margin-top: 140px;"> 
+
+           <!-- display card div --> 
+     
+  </div>
+</div>
+
+
+
+  <!-- Edit category modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="editcategoryModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit category</h4>
+            </div>
+  
+            <div style="padding:20px ;">
+              <form id="editcategory"> 
+               
+               <!-- your category -->
+              </form>
+            </div>
+           
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  </div>
+
+  <!-- view profile modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="profileModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Profile</h4>
+            </div>
+  
+            <div style="padding:20px ;">
+              <form >
+                  <div class="form-group">
+                    <label for="email">Name</label>
+                    <input type="text" class="form-control" id="sellername" name="sellername" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Mobile Number</label>
+                    <input type="text" class="form-control" id="sellernumber" name="sellernumber" disabled>
+                  </div>
+               
+                  <p id="" style="color:red ;text-align: center;"></p>
+                  <button type="button"  class="btn btn-primary" onclick="updatename()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update <button type="button"  class="btn btn-success" style="margin-left: 10px;" onclick="editname()"><i class="fa fa-pencil"></i>  Edit</button> </button>
+                </form>
+            </div>
+           
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  </div>
+
+  <!-- change password modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="passwordModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Change password</h4>
+            </div>
+  
+            <div style="padding:20px ;">
+              <form id="changepassword">
+                  <div class="form-group">
+                    <label for="email">Old password</label>
+                    <input type="text" class="form-control" id="oldpassword" name="oldpassword" >
+                  </div>
+                  <div class="form-group">
+                    <label for="email">New password</label>
+                    <input type="text" class="form-control" id="newpassword" name="newpassword" >
+                  </div>
+               
+                  <p id="passworderror" style="color:red ;text-align: center;"></p>
+                  <button type="submit"  class="btn btn-primary">Change password</button>
+                </form>
+            </div>
+           
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  </div>  
+ 
+<!-- Modal -->
+
+ 
+    <!-- Trigger the modal with a button -->
+
+  
+    <!-- Add product Modal -->
+    <div class="modal fade" id="productModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add product</h4>
+          </div>
+
+          <div style="padding:20px ;">
+            <form name="product" id="product" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="email">Product Name</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Enter Product Name" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Quantity</label>
+                  <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Product Quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Category</label>
+                    <select class="form-control" id="category" name="category">
+                     <!-- dynamic Category -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Product Price" required>
+                </div>
+                <div class="form-group">
+                  <label for="pwd">Product Image</label>
+                  <input type="file" class="form-control" id="image_upload" name="file" required>
+              </div>
+              <p id="producterror" style="color:red ;text-align: center;"></p>
+
+                <button type="submit" class="btn btn-primary">Add product</button>
+
+              </form>
+          </div>
+         
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Add Category modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="categoryModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add Category</h4>
+            </div>
+  
+            <div style="padding:20px ;">
+              <form name="productCategory" id="productCategory">
+                  <div class="form-group">
+                    <label for="email">Category Name</label>
+                    <input type="text" class="form-control" id="categoryname" name="categoryname" placeholder="Enter Category Name">
+                  </div>
+                  <p id="categoryerror" style="color:red ;text-align: center;"></p>
+                  <button type="submit"  class="btn btn-primary">Add Category</button>
+                </form>
+            </div>
+           
+  
+  
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  
+
+
+ 
+  <script src="resources/js/sellerHome.js"></script>
+  
+</body>
+</html>

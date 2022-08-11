@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>userHome</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="resources/js/checkUser.js"></script>
+  <script src="resources/js/getUserProduct.js"></script>
+  <script src="resources/js/getUserCategory.js"></script>
+  <script src="resources/js/getUserProfile.js"></script>
+
+
+  <link rel="stylesheet" href="resources/css/userHome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  
+<nav class="navbar navbar-default navbar-fixed-top" style="padding: 10px;background-color: #5DADE2 ; ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="font-family:Lucida Handwriting;color: #F4F6F7;margin-left: 5px;" >Fashioner</a>
+    </div>
+    <ul class="nav navbar-nav" style="margin-left: 50px">
+      <li class="active"><a onclick="onloadhome()" style=" font-family: Lucida Console;font-size: large;">Home</a></li>
+      <li><a style="color: #F4F6F7;font-family:Lucida Console;margin-left: 400px;"  id="filterproduct"> </a></li>
+ 
+     
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a style="color: #F4F6F7;font-family:Lucida Console;" onclick="loadcartpage()"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>  cart</a></li>
+      <li><a style="color: #F4F6F7;font-family:Lucida Console;" onclick="loadorderpage()"> <i class="fa fa-opencart" aria-hidden="true"></i>  My Orders</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"  style="font-family:Lucida Console;color: #F4F6F7 ;background-color: #5DADE2; "><i class="fa fa-th-large" aria-hidden="true"></i>  All categories
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu" id="getUserCategory">
+        
+        </ul>
+      </li>
+
+
+
+      <li class="dropdown">
+        <a  class="dropdown-toggle" data-toggle="dropdown"  style="font-family:Lucida Console;color: #F4F6F7 ;background-color: #5DADE2; "><span class="fa fa-user-circle-o" ></span>  Profile
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" data-toggle="modal" data-target="#profileModal" style="font-family: Lucida Console;" ><span class="fa fa-user"></span> My Profile</a></li>
+        
+          <li><a href="#" data-toggle="modal" data-target="#passwordModal" style="font-family: Lucida Console;" ><i class="fa fa-unlock-alt" aria-hidden="true"></i>  Change password</a></li>
+        
+          <hr><li><a href="#" style="font-family: Lucida Console;" onclick="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    
+        </ul>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+<!--  -->
+  <div class="container-fluid" style="margin-left: 180px;"> 
+  <div class="cont" id="productcard" style="margin-top: 150px;"> 
+  
+           <!-- display card div --> 
+     
+  </div>
+</div>
+
+
+  <!-- buy now modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="buynowModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Order Summary</h4>
+            </div>
+
+            <div style="padding:20px ;">
+              <form id="buyNow" name="buyNow" >
+                <div class="form-group">
+                  <input type="hidden" class="form-control" id="buynowProductid" name="buynowProductid" disabled>
+                </div> 
+                <div class="form-group">
+                  <input type="hidden" class="form-control" id="totalqty" name="totalqty" disabled>
+                </div> 
+                <div class="form-group">
+                    <label for="email">Product Name</label>
+                    <input type="text" class="form-control" id="buynowProductname" name="buynowProductname" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">price</label>
+                    <input type="text" class="form-control" id="buynowprice" name="buynowprice" disabled>
+                  </div>
+               
+                  <div class="form-group">
+                    <label for="">Quantity</label>
+                    <input type="number" min="0" max=""  class="form-control" id="buynowquantity" name="buynowquantity" onchange="totalpriceupdate()">
+                  </div>
+                
+
+                  <div class="form-group">
+                    <label for="email">Total price</label>
+                    <input type="text" class="form-control" id="buynowtotal" name="buynowtotal" disabled>
+                  </div>
+               
+                  <div class="form-group">
+                    <label for="email">Address</label>
+                    <input type="text" class="form-control" id="buynowaddress" name="buynowaddress" disabled>
+                  </div>
+
+                  <p id="" style="color:red ;text-align: center;"></p>
+                  <button type="submit"  class="btn btn-primary" > Place Order  </button>
+                </form>
+            </div>
+           
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  </div>
+
+
+
+  <!-- view profile modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="profileModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Profile</h4>
+            </div>
+  
+            <div style="padding:20px ;">
+              <form >
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="username" name="username" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" class="form-control" id="usernumber" name="usernumber" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="useraddress" name="useraddress" disabled>
+                  </div>
+               
+                  <p id="" style="color:red ;text-align: center;"></p>
+                  <button type="button"  class="btn btn-primary" onclick="updatename()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update <button type="button"  class="btn btn-success" style="margin-left: 10px;" onclick="editname()"><i class="fa fa-pencil"></i>  Edit</button> </button>
+                </form>
+            </div>
+           
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  </div>
+
+  <!-- change password modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="passwordModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Change password</h4>
+            </div>
+  
+            <div style="padding:20px ;">
+              <form id="changepassword">
+                  <div class="form-group">
+                    <label for="email">Old password</label>
+                    <input type="text" class="form-control" id="oldpassword" name="oldpassword" >
+                  </div>
+                  <div class="form-group">
+                    <label for="email">New password</label>
+                    <input type="text" class="form-control" id="newpassword" name="newpassword" >
+                  </div>
+               
+                  <p id="passworderror" style="color:red ;text-align: center;"></p>
+                  <button type="submit"  class="btn btn-primary">Change password</button>
+                </form>
+            </div>
+           
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    
+  </div>  
+
+  
+  
+  <script src="resources/js/userHome.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+$.ajax({
+    url:"getprofile",
+    type:"GET",
+    success:function(res)
+    {
+        console.log(res);
+        $("#sellernumber").val(res[0].mobilenumber);
+        $("#sellername").val(res[0].name);
+    }
+});

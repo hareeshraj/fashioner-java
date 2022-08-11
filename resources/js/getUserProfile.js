@@ -1,0 +1,11 @@
+$.ajax({
+    url:"getuserprofile",
+    type:"GET",
+    success:function(res)
+    {
+        console.log(res);
+        $("#usernumber").val(res[0].mobilenumber);
+        $("#username").val(res[0].name);
+        $("#useraddress").val(res[0].address);
+    }
+});
